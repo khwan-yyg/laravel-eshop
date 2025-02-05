@@ -21,10 +21,15 @@ Route::get("/product/{slug}", [ProductsManager::class, "details"])->name("produc
 
 Route::middleware("auth")->group(function () {
     Route::get("/cart/{id}", [ProductsManager::class, "addToCart"])->name("cart.add");
-
     Route::get("/cart", [ProductsManager::class, "showCart"])->name("cart.show");
+    Route::get("/cart/delete/{id}", [ProductsManager::class, "deleteCart"])->name("cart.delete");
 
     Route::get("/checkout", [OrderManager::class, "showCheckout"])->name("checkout.show");
 
     Route::post("/checkout", [OrderManager::class, "checkoutPost"])->name("checkout.post");
+
+    Route::get("/payment/success/{order_id}", [OrderManager::class, "paymentSuccess"])->name("payment.success");
+    Route::get("/payment/error", [OrderManager::class, "paymentError"])->name("payment.error");
+
+    Route::get("/order/history", [OrderManager::class, "orderHistory"])->name("order.history");
 });

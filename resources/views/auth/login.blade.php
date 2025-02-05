@@ -50,9 +50,9 @@
             <label for="flexCheckDefault">Remember me</label>
         </div>
 
-        @if (@session()->has("success"))
+        @if (@session("success"))
         <div class="alert alert-success">
-            {{session()->get("success")}}
+            {{session("success")}}
         </div>
         @endif
 

@@ -7,17 +7,17 @@
         <section>
             <div class="row">
 
-              @if (@session()->has("success"))
+              @if(session('success'))
               <div class="alert alert-success">
-                  {{session()->get("success")}}
+                  {{ session('success') }}
               </div>
-              @endif
-      
-              @if (@session("error"))
+          @endif
+          
+          @if(session('error'))
               <div class="alert alert-danger">
-                  {{session("error")}}
+                  {{ session('error') }}
               </div>
-              @endif
+          @endif
 
                 @foreach ($cartItems as $cart)
                 <div class="col-12">
@@ -28,9 +28,10 @@
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
-                              <h5 class="card-title"> <a href="{{route("products.details",$cart->slug)}}">{{$cart->title}}</a> |
+                              <h5 class="card-title"> <a href="{{route("products.details",$cart->slug)}}">{{$cart->title}}</a> 
                               </h5>
                               <p class="card-text">Price: ${{$cart->price}} | {{$cart->quantity}}</p>
+                              <a href="{{route('cart.delete',$cart->cart_id)}}">Delete</a>
                             </div>
                           </div>
                         </div>
